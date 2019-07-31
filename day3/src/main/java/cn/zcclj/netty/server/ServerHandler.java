@@ -42,7 +42,7 @@ public class ServerHandler extends SimpleChannelInboundHandler<String> {
     @Override
     public void handlerAdded(ChannelHandlerContext ctx) throws Exception {
         Channel channel = ctx.channel();
-        channelGroup.writeAndFlush("[服务器] - " + channel.remoteAddress() + " - 连接\n");
+        channelGroup.writeAndFlush("[服务器] - " + channel.remoteAddress() + " - 加入\n");
         channelGroup.add(channel);
     }
 
@@ -54,7 +54,7 @@ public class ServerHandler extends SimpleChannelInboundHandler<String> {
     @Override
     public void handlerRemoved(ChannelHandlerContext ctx) throws Exception {
         Channel channel = ctx.channel();
-        channelGroup.writeAndFlush("[服务器] - " + channel.remoteAddress() + " - 离线\n");
+        channelGroup.writeAndFlush("[服务器] - " + channel.remoteAddress() + " - 离开\n");
         //断掉后channeGroup会自动移除channel，所以下行代码不需要
         //channelGroup.remove(channel);
     }
